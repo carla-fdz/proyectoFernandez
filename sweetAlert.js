@@ -1,10 +1,9 @@
 (async() => {
     const {value: nombre} = await Swal.fire({
-        title: '¡Bienvenido al Quiz de Economía!',
+        title: '¡Bienvenido!',
         text: '¿Cual es tu nombre?',
         confirmButtonText: 'Ok',
         footer: '<span>Esta es información importante</span>',
-        width: '50%',
         padding: '1rem',
         backdrop: 'true',
         position: 'center',

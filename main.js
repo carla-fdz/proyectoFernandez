@@ -1,33 +1,5 @@
-// Saludo Inicial
-//Modificar con Sweet Alert, asyn y await
-
-/* function saludar(){
-    alert("Hola! ¿Qué te parece si ponemos a prueba tu conocimiento?")
-}
-saludar()
-sessionStorage.setItem("nombre", prompt('Ingresa tu nombre: '));
-let usuario = sessionStorage.getItem('nombre');
-console.log(usuario);
-sessionStorage.setItem("dificultad", prompt('Elige la dificultad (1-3): '));
-let dificultad = sessionStorage.getItem('dificultad');
-console.log(dificultad);
-switch(dificultad){
-    case "1":
-        confirm("Nivel principiante")
-        break;
-    case "2":
-        confirm("Nivel intermedio")
-        break;
-    case "3":
-        confirm("Nivel avanzado")
-        break;
-}
-if (usuario == null){
-    sessionStorage.setItem('nombre');
-}else{
-    alert(usuario + ', comencemos!')
-}*/ 
 let indexPregunta = 0;
+let puntaje = 0;
 
 //Cargar preguntas
 function cargarPregunta(index){
@@ -58,25 +30,25 @@ async function seleccionarOpcion(index){
             text: "La respuesta ha sido correcta",
             icon: "success",
             confirmButtonColor: 'orange',
-        })
-        // event.target.style.backgroundColor= 'green'; 
+        });
+        puntaje++;
     }else{
         await Swal.fire({
             title: "Respuesta incorrecta",
-            //el $ no funciona:
-            // text: 'La respuesta correcta es ${objetoPregunta.respuesta}', 
+            text: `La respuesta correcta es: "${objetoPregunta.respuesta}"`, 
             icon: "error",
             confirmButtonColor: 'orange',
         })
-        // event.target.style.backgroundColor= 'red'
     }
     indexPregunta++;
     if (indexPregunta >= baseDePreguntas.length){
         await Swal.fire({
             title: "Juego terminado",
             confirmButtonColor: 'orange',
+            text: `Tu puntaje fue de: ${puntaje}/${baseDePreguntas.length}`,
         });
         indexPregunta=0;
+        puntaje = 0;
     }
     cargarPregunta(indexPregunta);
 } 
@@ -91,18 +63,31 @@ function encender(){
 function apagar(){
     bombilla.setAttribute('src', "./assets/bombillaEncendida.jpg")
 }
-
-// Se me genera un problema cuando hago click en pista
 function pista(){
-    ayuda = document.getElementById("pista").innerHTML = objetoPregunta.pista;
-    if(ayuda){
-        Swal.fire({
-            title: 'Pista',
-            texto: objetoPregunta.pista,
-            imageUrl: objetoPregunta.pistaImg,
-            confirmButtonText: 'Entendido',
-            confirmButtonColor: 'orange',
-        });
-    }
+    Swal.fire({
+        title: 'Pista',
+        text: objetoPregunta.pista,
+        imageUrl: objetoPregunta.pistaImg,
+        confirmButtonText: 'Entendido',
+        confirmButtonColor: 'orange',
+    });
+};
+
+const obtenerDatosJson = ()=>{
+    fetch("data/data.json")
+    .then((respuesta)=>{
+        console.log(respuesta)
+        return respuesta.json()
+    })
+    .then((res)=>{
+        console.log(res)
+    })
+    .catch((err)=>{
+        console.log("Error: ", err)
+    })
 }
+
+const btnJson = document.querySelector('#btnJson');
+btnJson.addEventListener('click', obtenerDatosJson)
+
 
