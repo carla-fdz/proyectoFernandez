@@ -86,7 +86,6 @@ const obtenerDatosJson = ()=>{
         console.log("Error: ", err)
     })
 }
-
 const btnJson = document.querySelector('#btnJson');
 btnJson.addEventListener('click', obtenerDatosJson)
 

@@ -3,7 +3,7 @@
         title: '¡Bienvenido!',
         text: '¿Cual es tu nombre?',
         confirmButtonText: 'Ok',
-        footer: '<span>Esta es información importante</span>',
+        // footer: '<span>Esta es información importante</span>',
         padding: '1rem',
         backdrop: 'true',
         position: 'center',
