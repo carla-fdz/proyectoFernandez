@@ -48,7 +48,7 @@ body{
 }
 
 .margin4 {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
 }
 
 .pista{
@@ -61,7 +61,6 @@ body{
     height: 50px;
     width: auto;
     cursor: pointer;
-    padding-top: 5px;
 }
 
 .btn {
